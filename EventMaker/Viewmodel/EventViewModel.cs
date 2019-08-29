@@ -8,9 +8,9 @@ using EventMaker.Model;
 
 namespace EventMaker.Viewmodel
 {
-    class EventViewModel
+    public class EventViewModel
     {
-        private EventCatalogSingleton _eventCatalogSingleton;
+        private ObservableCollection<Event> _eventCatalogSingleton;
         private int _id;
         private string _name;
         private string _description;
@@ -20,7 +20,7 @@ namespace EventMaker.Viewmodel
 
         public EventViewModel()
         {
-            _eventCatalogSingleton = EventCatalogSingleton.Instance;
+            _eventCatalogSingleton = EventCatalogSingleton.Instance.Events;
 
             DateTime dt = System.DateTime.Now;
             Date = new DateTimeOffset(dt.Year, dt.Month, dt.Day,dt.Hour,dt.Minute,0 ,0, new TimeSpan());
@@ -29,7 +29,7 @@ namespace EventMaker.Viewmodel
 
         public ObservableCollection<Event> EventCatalog
         {
-            get { return _eventCatalogSingleton.Events; }
+            get { return _eventCatalogSingleton; }
         }
 
         public int ID
