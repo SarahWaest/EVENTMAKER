@@ -26,5 +26,12 @@ namespace EventMaker.View
         {
             this.InitializeComponent();
         }
+
+        private void Return(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(EventPage));
+        }
+
+
     }
 }

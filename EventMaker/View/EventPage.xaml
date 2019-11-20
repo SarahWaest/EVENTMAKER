@@ -17,9 +17,9 @@
                     <TextBlock Height="auto" Width="auto" Text="{Binding ID}"/>
                     <TextBlock Height="auto" Width="auto" Text="{Binding Description}"/>
                     <TextBlock Height="auto" Width="auto" Text="{Binding Place}"/>
-                    <TextBlock Height="auto" Width="auto" Text="{Binding Datetime}"/>
+                    <TextBlock Height="auto" Width="auto" Text="{Binding Date}"/>
+                    <TextBlock Height="auto" Width="auto" Text="{Binding Time}"/>
                 </StackPanel>
-
             </Grid>
         </DataTemplate>
     </Page.Resources>
@@ -32,11 +32,16 @@
     </Page.DataContext>
 
     <Grid>
-
-        <ListView ItemTemplate="{StaticResource EventDataTemplate}" ItemsSource="{Binding EventCatalog}"/>
+        <ListView x:Name="listView" SelectedItem="{Binding SelectedEvent,Mode=TwoWay}" ItemsSource="{Binding EventCatalog}" ItemTemplate="{StaticResource EventDataTemplate}">
+            <Custom:Interaction.Behaviors>
+                <Custom1:EventTriggerBehavior EventName="SelectedChanged">
+                    <Custom1:InvokeCommandAction Command="{Binding SelectedEventCommand}" CommandParameter="{Binding SelectedItem, ElementName=listView}"/>
+                </Custom1:EventTriggerBehavior>
+            </Custom:Interaction.Behaviors>
+        </ListView>
 
         <StackPanel Orientation="Horizontal" Margin="20">
-            <AppBarButton Content="Create Event" Background="CornflowerBlue" Margin="0,450,60,0" Height="40" Width="80">
+            <AppBarButton Icon="Add" Label="Create Event" Margin="600,448,60,0" >
                 <Custom:Interaction.Behaviors>
                     <Custom1:EventTriggerBehavior EventName="Click">
                         <Custom1:NavigateToPageAction TargetPage="EventMaker.View.CreateEventPage"/>
@@ -44,6 +49,16 @@
                 </Custom:Interaction.Behaviors>
             </AppBarButton>
         </StackPanel>
+
+        <AppBarButton HorizontalAlignment="Left" Icon="Delete" Label="Delete Event" Margin="558,468,0,0" VerticalAlignment="Top">
+            <Custom:Interaction.Behaviors>
+                <Custom1:EventTriggerBehavior EventName="Click">
+                    <Custom1:InvokeCommandAction Command="{Binding DeleteEventCommand, Mode=TwoWay}"/>
+                </Custom1:EventTriggerBehavior>
+            </Custom:Interaction.Behaviors>
+        </AppBarButton>
+
+
 
     </Grid>
 </Page>

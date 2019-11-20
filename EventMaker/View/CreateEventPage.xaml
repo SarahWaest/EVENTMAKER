@@ -40,6 +40,8 @@
     <TextBox Text="{Binding Time, Mode=TwoWay}"/>
                 <TimePicker Time="{Binding Datetime}" FontSize="20"/>
         </StackPanel>
+            <AppBarButton Command="{Binding EventCreateCommand}" Content="Add" Background="CornflowerBlue" Height="40" Width="80" Margin="22,-10"/>
+            <AppBarButton Content="Return" Background="CornflowerBlue" Height="40" Width="80" Margin="110,-30" Click="Return"/>
         </StackPanel>
     </Grid>
 </Page>
