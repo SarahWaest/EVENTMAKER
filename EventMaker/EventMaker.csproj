@@ -168,7 +168,7 @@
       <Version>2.0.1</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
-      <Version>8.0.3</Version>
+      <Version>13.0.1</Version>
     </PackageReference>
     <PackageReference Include="WinUX.UWP">
       <Version>2.2.16306.1</Version>
